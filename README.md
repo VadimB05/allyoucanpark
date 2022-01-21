@@ -1,2 +1,0 @@
-# allyoucanpark
-Software für Parken
