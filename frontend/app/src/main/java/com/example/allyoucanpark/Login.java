@@ -27,9 +27,11 @@ public class Login extends AppCompatActivity {
     EditText passwortEditText;
     Button finalLoginBtn;
 
+    TextView testTV;
+
     // Instanzvariablen für das einlesen des JSON Strings
     // todo: put the final url + test
-    private static String JSON_URL = "https://run.mocky.io/v3/993448eb-f45b-468d-aa59-ca7a673ed27d";
+    private static String LOGIN_URL = "https://run.mocky.io/v3/993448eb-f45b-468d-aa59-ca7a673ed27d";
     List<HashMap<String,String>> userList;
     private String useridStrg;
     private String userNameStrg;
@@ -52,7 +54,7 @@ public class Login extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameLoginEditText);
         passwortEditText = findViewById(R.id.passwortLoginEditText);
         finalLoginBtn = findViewById(R.id.finalLoginLoginBtn);
-        testListV = findViewById(R.id.testListView);
+        testTV = findViewById(R.id.textViewLoginTest);
 
         // Initialisiere Userlist
         userList = new ArrayList<>();
@@ -73,14 +75,14 @@ public class Login extends AppCompatActivity {
 
 
                 // Test verarbeiten der Daten im Onclick
-                showUserAdapter = new SimpleAdapter(
-                        Login.this,
-                        userList,
-                        R.layout.row_layout,
-                        new String[]{"username","passwort"},
-                        new int[]{R.id.textViewRowLayout, R.id.textViewRowLayout2}
-                );
-                testListV.setAdapter(showUserAdapter);
+//                showUserAdapter = new SimpleAdapter(
+//                        Login.this,
+//                        userList,
+//                        R.layout.row_layout,
+//                        new String[]{"username","passwort"},
+//                        new int[]{R.id.textViewRowLayout, R.id.textViewRowLayout2}
+//                );
+//                testListV.setAdapter(showUserAdapter);
 
 
                 // Check in the user input
@@ -96,7 +98,8 @@ public class Login extends AppCompatActivity {
                 }
                 // Stimmen die eingegebenen Userdaten
                 else{
-                    if (validateValue(inputName, inputPasswort)) {
+                    Boolean input = validateValue(inputName, inputPasswort);
+                    if (input) {
                         Toast.makeText(Login.this,"Login erfolgreich!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, Welcome.class);
                         startActivity(intent);
@@ -121,9 +124,15 @@ public class Login extends AppCompatActivity {
         // mit for loop in die einzelnen hashmaps schauen
         for (HashMap i:
                 userList) {
-            // check if key and values are in the hashmap
-            if(i.get("username") == username) {
-                if (i.get("passwort").toString() == passwort){
+            // check if key and value are in the hashmap
+            String usernameMap = i.get("username").toString();
+            String passwortMap = i.get("passwort").toString();
+
+            testTV.setText(usernameMap + " " + passwortMap);
+
+            if(usernameMap == username) {
+                usernameAndPasswortBool = true;
+                if (passwortMap == passwort){
                     usernameAndPasswortBool = true;
                 }
             }
@@ -134,7 +143,6 @@ public class Login extends AppCompatActivity {
 
     // Innerclass for Async Task because URL Json read only works as a background process
     public class GetData extends AsyncTask<String,String,String> {
-        // todo: ask if the jsonstring contains the name? no hashmap is doch dafür
 
         // Create the Http Connection
         @Override
@@ -147,7 +155,7 @@ public class Login extends AppCompatActivity {
 
             try {
                 // Http Verbindung herstellen
-                url = new URL(JSON_URL);
+                url = new URL(LOGIN_URL);
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 try {

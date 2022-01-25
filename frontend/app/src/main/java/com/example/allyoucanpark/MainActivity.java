@@ -38,7 +38,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // todo onclick + register
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Register.class);
+                startActivity(intent);
+            }
+        });
 
         // todo: Map
         // tdo Navigate / menü
