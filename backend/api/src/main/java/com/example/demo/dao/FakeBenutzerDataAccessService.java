@@ -13,8 +13,8 @@ public class FakeBenutzerDataAccessService implements BenutzerDao {
     private static List<Benutzer> DB = new ArrayList<>();
 
     @Override
-    public int insertBenutzer(UUID id, Benutzer benutzer) {
-        DB.add(new Benutzer(id, benutzer.getName()));
+    public int insertBenutzer(UUID userid, Benutzer benutzer) {
+        DB.add(new Benutzer(userid, benutzer.getUsername(), benutzer.getPasswort()));
         return 0;
     }
 
