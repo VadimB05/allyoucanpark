@@ -38,12 +38,14 @@ public class Login extends AppCompatActivity {
     private String passwortStrg;
     private String emailStrg;
 
+    Boolean input;
+
     // todo delete Testlistview
     ListView testListV;
     SimpleAdapter showUserAdapter;
 
     static String inputName;
-    private String inputPasswort;
+    String inputPasswort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +71,18 @@ public class Login extends AppCompatActivity {
         finalLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Create an Object of getData Innerclass to run the background process of reading in the json
-                GetData getData = new GetData();
-                getData.execute();
-
+                // Check in the user input
+                inputName = usernameEditText.getText().toString();
+                inputPasswort = passwortEditText.getText().toString();
+                if (inputName.isEmpty()||inputPasswort.isEmpty()){
+                    // Toast-Message for little pop up "Error"-Messages
+                    Toast.makeText(Login.this,"Deine Angaben sind noch unvollständig. Bitte fülle alle Felder aus!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    // Create an Object of getData Innerclass to run the background process of reading in the json
+                    GetData getData = new GetData();
+                    getData.execute();
+                }
 
                 // Test verarbeiten der Daten im Onclick
 //                showUserAdapter = new SimpleAdapter(
@@ -85,60 +95,13 @@ public class Login extends AppCompatActivity {
 //                testListV.setAdapter(showUserAdapter);
 
 
-                // Check in the user input
-                inputName = usernameEditText.getText().toString();
-                inputPasswort = passwortEditText.getText().toString();
-
-
                 // Prüfen ob Username und Passwort korrekt eingegeben sind
                 // - Ist eins der beiden Felder leer?
-                if (inputName.isEmpty()||inputPasswort.isEmpty()){
-                    // Toast-Message for little pop up "Error"-Messages
-                    Toast.makeText(Login.this,"Deine Angaben sind noch unvollständig. Bitte fülle alle Felder aus!", Toast.LENGTH_SHORT).show();
-                }
-                // Stimmen die eingegebenen Userdaten
-                else{
-                    Boolean input = validateValue(inputName, inputPasswort);
-                    if (input) {
-                        Toast.makeText(Login.this,"Login erfolgreich!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Login.this, Welcome.class);
-                        startActivity(intent);
-                        // Todo: show welcome page and they start activity but without login register part in the bottom region
-                    }
-                    else {
-                        Toast.makeText(Login.this,"Deine Angaben sind nicht korrekt! Username oder Passwort stimmen nicht.", Toast.LENGTH_SHORT).show();
-                    }
-                }
+
+                // Stimmen die eingegebenen Userdaten?
 
             }
         });
-    }
-
-    // Methode zum Prüfen des Usernames + Passwort auf Korrektheit (nur im Onclicklistener anwendbar, da Objekt der
-    // Inner Class für das einlesen der JSON notwendig ist, sonst ist die Liste mit den user hashmaps nicht befüllt
-    private boolean validateValue(String username, String passwort){
-        boolean usernameAndPasswortBool = false;
-
-        // todo test with java, if it is written like this
-
-        // mit for loop in die einzelnen hashmaps schauen
-        for (HashMap i:
-                userList) {
-            // check if key and value are in the hashmap
-            String usernameMap = i.get("username").toString();
-            String passwortMap = i.get("passwort").toString();
-
-            testTV.setText(usernameMap + " " + passwortMap);
-
-            if(usernameMap == username) {
-                usernameAndPasswortBool = true;
-                if (passwortMap == passwort){
-                    usernameAndPasswortBool = true;
-                }
-            }
-
-        }
-        return usernameAndPasswortBool;
     }
 
     // Innerclass for Async Task because URL Json read only works as a background process
@@ -203,20 +166,20 @@ public class Login extends AppCompatActivity {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
                     // get the values and save them into the variables (changes with every iteration in this for loop
-                    useridStrg = jsonObject1.getString("userid");
+//                    useridStrg = jsonObject1.getString("userid");
                     userNameStrg = jsonObject1.getString("username");
                     passwortStrg = jsonObject1.getString("passwort");
-                    emailStrg = jsonObject1.getString("email");
+//                    emailStrg = jsonObject1.getString("email");
 
                     // Making a HashMap
                     HashMap<String, String> users = new HashMap<>();
 
                     // Add the values to the Hashmap
                     // Eine Hashmap speichert so alle userdaten
-                    users.put("userid",useridStrg);
+//                    users.put("userid",useridStrg);
                     users.put("username", userNameStrg);
                     users.put("passwort", passwortStrg);
-                    users.put("email",emailStrg);
+//                    users.put("email",emailStrg);
 
                     // add this hashmap to the Arraylist
                     userList.add(users);
@@ -225,6 +188,18 @@ public class Login extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            Boolean input = validateValue(inputName, inputPasswort);
+            if (input) {
+                Toast.makeText(Login.this,"Login erfolgreich!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Login.this, Welcome.class);
+                startActivity(intent);
+                // Todo: show welcome page and they start activity but without login register part in the bottom region
+            }
+            else {
+                Toast.makeText(Login.this,"Deine Angaben sind nicht korrekt! Username oder Passwort stimmen nicht.", Toast.LENGTH_SHORT).show();
+            }
+
 
             // Test Darstellung im Listview
 //            showUserAdapter = new SimpleAdapter(
@@ -237,4 +212,35 @@ public class Login extends AppCompatActivity {
 //            testListV.setAdapter(showUserAdapter);
         }
     }
-}
+
+    // Methode zum Prüfen des Usernames + Passwort auf Korrektheit (nur im Onclicklistener anwendbar, da Objekt der
+    // Inner Class für das einlesen der JSON notwendig ist, sonst ist die Liste mit den user hashmaps nicht befüllt
+    private Boolean validateValue(String username, String passwort) {
+            int treffer = 0;
+
+            // todo test with java, if it is written like this
+
+            // mit for loop in die einzelnen hashmaps schauen
+            for (HashMap i :
+                    userList) {
+                // check if key and value are in the hashmap
+                String usernameMap = i.get("username").toString();
+                String passwortMap = i.get("passwort").toString();
+
+                testTV.setText(usernameMap + " " + passwortMap);
+
+                if (username.equals(usernameMap)) {
+                    if (passwort.equals(passwortMap)) {
+                        treffer = 1;
+                    }
+                }
+            }
+            if (treffer == 1){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+    }
