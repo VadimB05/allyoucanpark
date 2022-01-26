@@ -6,20 +6,28 @@ import java.util.UUID;
 
 public class Benutzer {
 
-    private final UUID id;
-    private final String name;
+    private final UUID userid;
+    private final String username;
+    private final String passwort;
 
-    public Benutzer(@JsonProperty("id") UUID id,
-                    @JsonProperty("name") String name) {
-        this.id = id;
-        this.name = name;
+    public Benutzer(@JsonProperty("userid") UUID userid,
+                    @JsonProperty("username") String username,
+                    @JsonProperty("passwort") String passwort)
+    {
+        this.userid = userid;
+        this.username = username;
+        this.passwort = passwort;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getUserid() {
+        return userid;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPasswort() {
+        return passwort;
     }
 }

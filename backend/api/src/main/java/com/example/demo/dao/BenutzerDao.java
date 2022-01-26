@@ -6,11 +6,11 @@ import com.example.demo.model.Benutzer;
 
 public interface BenutzerDao {
 
-    int insertBenutzer(UUID id, Benutzer benutzer);
+    int insertBenutzer(UUID userid, Benutzer benutzer);
 
     default int insertBenutzer(Benutzer benutzer) {
-        UUID id = UUID.randomUUID();
-        return insertBenutzer(id, benutzer);
+        UUID userid = UUID.randomUUID();
+        return insertBenutzer(userid, benutzer);
     }
 
     List<Benutzer> selectAllBenutzer();
