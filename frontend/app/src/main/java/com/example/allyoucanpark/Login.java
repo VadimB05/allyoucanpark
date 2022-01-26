@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
 
     // Instanzvariablen für das einlesen des JSON Strings
     // todo: put the final url + test
-    private static String LOGIN_URL = "https://run.mocky.io/v3/993448eb-f45b-468d-aa59-ca7a673ed27d";
+    private static String LOGIN_URL = "localhost:8080/api/v1/benutzer";
     List<HashMap<String,String>> userList;
     private String useridStrg;
     private String userNameStrg;
@@ -155,9 +155,11 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             try {
+
+
                 // Initialisiere JSON Object und -Array
-                JSONObject jsonObject = new JSONObject(s);
-                JSONArray jsonArray = jsonObject.getJSONArray("User");
+//                JSONObject jsonObject = new JSONObject(s);
+                JSONArray jsonArray = new JSONArray(s);
 
                 // Iteriere über das JSON-Array, um die darin enthaltenen JSON-OBjects herauszubekommen und in der
                 // HashMap-Liste zu speichern
