@@ -4,6 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.UUID;
 
+/**
+ * In dieser Klasse werden die Attribute definiert
+ * Diese Klasse repräsentiert ein
+ * stell auch Getter bereit für id und zahl
+ */
 public class Parkticket {
 
     private final UUID id;

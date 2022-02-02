@@ -3,11 +3,15 @@ package com.simulation.Parkhaus.api;
 import com.simulation.Parkhaus.model.Parkticket;
 import com.simulation.Parkhaus.service.ParkticketService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * Diese Klasse wird vom Frontend angesprochen
+ * definiert die Pfade und leitet die Zugriffsanfragen weiter an die Backendlogik
+ */
 @RequestMapping("api/v1/parkticket")
 @RestController
 public class ParkticketController {
@@ -22,5 +26,16 @@ public class ParkticketController {
     @PostMapping
     public void addParkticket(@RequestBody Parkticket parkticket){
         parkticketService.addParkticket(parkticket);
+    }
+
+    @GetMapping
+    public List<Parkticket> getAllParkticket(){
+        return parkticketService.getAllParkticket();
+    }
+
+    @GetMapping(path = "{id}")
+    public Parkticket getParkticketById(@PathVariable("id") UUID id) {
+        return parkticketService.getParkticketById(id)
+                .orElse(null);
     }
 }
