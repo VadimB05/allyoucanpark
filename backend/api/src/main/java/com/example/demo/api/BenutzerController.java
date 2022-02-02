@@ -18,17 +18,17 @@ public class BenutzerController {
         this.benutzerService = benutzerService;
     }
 
-    @PostMapping
+    @PostMapping("hinzufuegen")
     public void addBenutzer(@RequestBody Benutzer benutzer) {
         benutzerService.addBenutzer(benutzer);
     }
 
-    @GetMapping()
+    @GetMapping("/alleAnzeigen")
     public List<Benutzer> getAllBenutzer() {
         return benutzerService.getAllBenutzer();
     }
 
-    @DeleteMapping("/löschen")
+    @DeleteMapping("/loeschen")
     public boolean deleteBenutzer(@RequestParam String username) {
         return benutzerService.deleteBenutzer(username);
     }
