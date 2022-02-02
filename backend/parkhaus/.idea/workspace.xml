@@ -6,11 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e8b3ae01-c352-4980-a4f5-bf43f8be9536" name="Changes" comment="Parkhaus v0.0.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/ParkhausApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/ParkhausApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/api/ParkticketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/api/ParkticketController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/dao/ParkticketDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/dao/ParkticketDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/dao/ParkticketDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/dao/ParkticketDataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/model/Parkticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/model/Parkticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/service/ParkticketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/service/ParkticketService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

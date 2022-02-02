@@ -9,11 +9,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-
 /**
- * Zufalls generierte id für das Parkticket
+ * Vorlesung: Software Engineering (WS 2021/22)
+ * Theorieabgabe
+ * Aufgabe: allYouCanPark - Parkhaus Backend
+ * Thema: MainActivity
+ *
+ * @author Vadim Balysev
+ * @date 02.02.2021
  */
+
+
 
 @Service
 public class ParkticketService {
@@ -35,5 +41,14 @@ public class ParkticketService {
 
     public Optional<Parkticket> getParkticketById(UUID id){
         return parkticketDao.selectParkticketById(id);
+    }
+
+    public int getCount() {
+        return parkticketDao.selectAllParkticket().size();
+    }
+
+
+    public boolean deleteParkticket(String ticketzahl) {
+        return parkticketDao.deleteParkticketByZahl(ticketzahl);
     }
 }

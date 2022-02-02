@@ -1,73 +1,60 @@
 package com.simulation.Parkhaus.dao;
 
 import com.simulation.Parkhaus.model.Parkticket;
+import com.simulation.Parkhaus.repository.ParkticketRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 /**
+ * Vorlesung: Software Engineering (WS 2021/22)
+ * Theorieabgabe
+ * Aufgabe: allYouCanPark - Parkhaus Backend
+ * Thema: MainActivity
  *
+ * @author Vadim Balysev
+ * @date 01.02.2021
  */
-@Repository("ParkticketDataDao")
-public class ParkticketDataService implements ParkticketDao{
 
-    private static List<Parkticket> DB = new ArrayList<>();
+
+@Repository("ParkticketDataDao")
+public class ParkticketDataService implements ParkticketDao {
+
+
+    private final ParkticketRepository parkticketRepository;
+
+    public ParkticketDataService(ParkticketRepository parkticketRepository) {
+        this.parkticketRepository = parkticketRepository;
+    }
 
     @Override
     public int insertParkticket(UUID id, Parkticket parkticket) {
-        DB.add(new Parkticket(id, parkticket.getZahl()));
+        Parkticket parkticket1 = new Parkticket(UUID.randomUUID(), parkticket.getTicketzahl());
+        parkticketRepository.save(parkticket1);
         return 1;
     }
 
     @Override
     public List<Parkticket> selectAllParkticket() {
-        return DB;
+        return parkticketRepository.findAll();
     }
 
     @Override
     public Optional<Parkticket> selectParkticketById(UUID id) {
-        return DB.stream()
-                .filter(parkticket -> parkticket.getId().equals(id))
-                .findFirst();
+        return parkticketRepository.findById(id);
     }
 
     /**
-     * In dieser Methode wird ein Ticket aus der Datenbank entfernt über die id.
-     * @param id
+     * In dieser Methode wird ein Ticket aus der Datenbank entfernt über die Ticketzahl.
+     * @param ticketzahl
      * @return
      */
     @Override
-    public int deleteParkticketById(UUID id) {
-        Optional<Parkticket> parkticketMaybe = selectParkticketById(id);
-        if(parkticketMaybe.isEmpty()){
-            return 0;
-        }
-        DB.remove(parkticketMaybe.get());
-        return 1;
-    }
-
-    /**
-     * In dieser Methode zeigt, wenn der Index von dem Ticket größer = 0 ist, dann
-     * haben wir das Ticket gefunden und wird zu einem neuen Hinzugefügt.
-     * @param id
-     * @param parkticket
-     * @return
-     */
-    @Override
-    public int updateParkticketById(UUID id, Parkticket parkticket) {
-        return selectParkticketById(id)
-                .map(p ->{
-                    int indexOfParkticketToDelete = DB.lastIndexOf(parkticket);
-                    if (indexOfParkticketToDelete >= 0){
-                        DB.set(indexOfParkticketToDelete, parkticket);
-                        return 1;
-                    }
-                    return 0;
-                })
-                .orElse(0);
+    public boolean deleteParkticketByZahl(String ticketzahl) {
+        Parkticket parkticket = parkticketRepository.findParkticketByTicketzahl(ticketzahl).get();
+        parkticketRepository.delete(parkticket);
+        return true;
     }
 
 

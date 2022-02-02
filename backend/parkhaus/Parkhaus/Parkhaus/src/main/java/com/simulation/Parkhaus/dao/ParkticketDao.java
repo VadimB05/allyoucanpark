@@ -7,7 +7,17 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
+ * Vorlesung: Software Engineering (WS 2021/22)
+ * Theorieabgabe
+ * Aufgabe: allYouCanPark - Parkhaus Backend
+ * Thema: MainActivity
  *
+ * @author Vadim Balysev
+ * @date 01.02.2021
+ */
+
+/**
+ * Mit diesem Interface werden die Daten in die Datenbank eingetragen.
  */
 public interface ParkticketDao {
 
@@ -22,6 +32,8 @@ public interface ParkticketDao {
 
     Optional<Parkticket> selectParkticketById(UUID id);
 
-    int deleteParkticketById(UUID id);
-    int updateParkticketById(UUID id, Parkticket parkticket);
+
+
+
+    boolean deleteParkticketByZahl(String zahl);
 }

@@ -7,6 +7,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+/**
+ * Vorlesung: Software Engineering (WS 2021/22)
+ * Theorieabgabe
+ * Aufgabe: allYouCanPark - Parkhaus Backend
+ * Thema: MainActivity
+ *
+ * @author Vadim Balysev
+ * @date 01.02.2021
+ */
 
 /**
  * Diese Klasse wird vom Frontend angesprochen
@@ -33,9 +42,19 @@ public class ParkticketController {
         return parkticketService.getAllParkticket();
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/id")
     public Parkticket getParkticketById(@PathVariable("id") UUID id) {
         return parkticketService.getParkticketById(id)
                 .orElse(null);
+    }
+
+    @GetMapping("/anzahl")
+    public int getParkticketCount() {
+        return parkticketService.getCount();
+    }
+
+    @DeleteMapping("/löschen")
+    public boolean deleteParkticket(@RequestParam String ticketzahl){
+        return parkticketService.deleteParkticket(ticketzahl);
     }
 }
