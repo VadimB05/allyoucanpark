@@ -14,4 +14,6 @@ public interface BenutzerDao {
     }
 
     List<Benutzer> selectAllBenutzer();
+
+    boolean deleteBenutzer(String username);
 }

@@ -23,8 +23,13 @@ public class BenutzerController {
         benutzerService.addBenutzer(benutzer);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Benutzer> getAllBenutzer() {
         return benutzerService.getAllBenutzer();
+    }
+
+    @DeleteMapping("/löschen")
+    public boolean deleteBenutzer(@RequestParam String username) {
+        return benutzerService.deleteBenutzer(username);
     }
 }
