@@ -25,4 +25,8 @@ public class BenutzerService {
     public List<Benutzer> getAllBenutzer() {
         return benutzerDao.selectAllBenutzer();
     }
+
+    public boolean deleteBenutzer(String username) {
+        return benutzerDao.deleteBenutzer(username);
+    }
 }

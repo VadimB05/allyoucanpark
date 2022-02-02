@@ -2,6 +2,7 @@ package com.example.allyoucanpark;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,12 +32,15 @@ public class Login extends AppCompatActivity {
 
     // Instanzvariablen für das einlesen des JSON Strings
     // todo: put the final url + test
-    private static String LOGIN_URL = "localhost:8080/api/v1/benutzer";
+    private static String LOGIN_URL = "https://10.0.2.2:3000/api/v1/benutzer";
+    //private static String LOGIN_URL = "https://run.mocky.io/v3/773d5524-6a04-4148-aced-9482714822ad";
     List<HashMap<String,String>> userList;
     private String useridStrg;
     private String userNameStrg;
     private String passwortStrg;
     private String emailStrg;
+
+    String jsonString;
 
     Boolean input;
 
@@ -137,6 +141,7 @@ public class Login extends AppCompatActivity {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
+                    Log.d(e.getMessage(), "abc");
                     e.printStackTrace();
                 }
                 // Important to close and disconnect Url connection
@@ -155,6 +160,7 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             try {
+                jsonString = s;
 
 
                 // Initialisiere JSON Object und -Array
@@ -229,7 +235,8 @@ public class Login extends AppCompatActivity {
                 String usernameMap = i.get("username").toString();
                 String passwortMap = i.get("passwort").toString();
 
-                testTV.setText(usernameMap + " " + passwortMap);
+                //testTV.setText(usernameMap + " " + passwortMap);
+                testTV.setText(jsonString);
 
                 if (username.equals(usernameMap)) {
                     if (passwort.equals(passwortMap)) {
