@@ -7,7 +7,6 @@
     <list default="true" id="e8b3ae01-c352-4980-a4f5-bf43f8be9536" name="Changes" comment="Parkhaus v0.0.1">
       <change beforePath="$PROJECT_DIR$/../api/src/main/java/com/example/demo/AllYouCanParkApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/src/main/java/com/example/demo/AllYouCanParkApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/ParkhausApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/ParkhausApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/api/ParkticketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/api/ParkticketController.java" afterDir="false" />
@@ -16,9 +15,7 @@
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/model/Parkticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/model/Parkticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/service/ParkticketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/java/com/simulation/Parkhaus/service/ParkticketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Parkhaus/Parkhaus/src/main/resources/application.properties" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/../../frontend/app/src/main/java/com/example/allyoucanpark/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/app/src/main/java/com/example/allyoucanpark/Login.java" afterDir="false" />
->>>>>>> 82a4ccb6d9126b755f5047c748bebc71dbe54177
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
